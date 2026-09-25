@@ -20,7 +20,7 @@ public class Autoaim extends SubsystemBase {
     public FiringLocation target = FiringLocation.HUB;
 
     private final Drivetrain drivetrain;
-
+    
     private InterpolatingDoubleTreeMap hubTimeOfFlightMap;
     private InterpolatingDoubleTreeMap passTimeOfFlightMap;
 	private InterpolatingDoubleTreeMap shooterSpeedsMap;
