@@ -102,9 +102,9 @@ public class IntakeRack extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		Logger.recordOutput("IntakeRoller/Position", this.getPosition());
-		Logger.recordOutput("IntakeRoller/TargetPosition", this.getTargetPosition());
-		Logger.recordOutput("IntakeRoller/State", this.getState());
+		Logger.recordOutput("IntakeRack/Position", this.getPosition());
+		Logger.recordOutput("IntakeRack/TargetPosition", this.getTargetPosition());
+		Logger.recordOutput("IntakeRack/State", this.getState());
 
 		switch (state) {
 			case STOP:

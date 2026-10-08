@@ -189,15 +189,16 @@ public class SubsystemManager extends SubsystemBase {
 						IntakeRollerState.STOP, 
 						RollerFloorState.STOP, 
 						ShooterState.FOLLOW_AUTOAIM_SLOW);
+				} else {
+					this.setSubsystemStates(
+						DriveState.DRIVE_JOYSTICKS, 
+						HoodState.TRENCH, 
+						IndexerState.STOP, 
+						IntakeRackState.EXTENDED_FULL, 
+						IntakeRollerState.STOP, 
+						RollerFloorState.STOP, 
+						ShooterState.FOLLOW_AUTOAIM_SLOW);
 				}
-				this.setSubsystemStates(
-					DriveState.DRIVE_JOYSTICKS, 
-					HoodState.TRENCH, 
-					IndexerState.STOP, 
-					IntakeRackState.EXTENDED_FULL, 
-					IntakeRollerState.STOP, 
-					RollerFloorState.STOP, 
-					ShooterState.FOLLOW_AUTOAIM_SLOW);
 				break;
 
 			case DRIVING_REVERSEINTAKING:
@@ -257,7 +258,8 @@ public class SubsystemManager extends SubsystemBase {
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
 					hood.atPositionToFire() &&
-					drivetrain.atAngleToScore()) {
+					drivetrain.atAngleToScore() &&
+					autoaim.goodToPass()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
 					rollerFloor.setState(RollerFloorState.FORWARD_FULLSPEED);
@@ -314,7 +316,8 @@ public class SubsystemManager extends SubsystemBase {
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
 					hood.atPositionToFire() &&
-					drivetrain.atAngleToScore()) {
+					drivetrain.atAngleToScore() &&
+					autoaim.goodToPass()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
 					rollerFloor.setState(RollerFloorState.FORWARD_FULLSPEED);

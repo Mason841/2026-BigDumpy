@@ -69,7 +69,7 @@ public class Shooter extends SubsystemBase {
 	public void setState(ShooterState wantedState) {
 		state = wantedState;
 		if (state.equals(ShooterState.FOLLOW_AUTOAIM_SLOW)) {
-			rpsLimiter.reset(autoaimShootSpeedSupplier.getAsDouble());
+			// rpsLimiter.reset(autoaimShootSpeedSupplier.getAsDouble());
 		}
 	}
 
