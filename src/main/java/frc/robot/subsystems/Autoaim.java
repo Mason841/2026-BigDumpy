@@ -289,13 +289,13 @@ public class Autoaim extends SubsystemBase {
 
     public enum ShooterSpeed {
 
-		M1(-36),
-		M2(-41.5),
-		M3(-46.5),
-		M4(-51),
-		M5(-54),
-		M6(-58),
-		M7(-61);
+		M1(36),
+		M2(41.5),
+		M3(46.5),
+		M4(51),
+		M5(54),
+		M6(58),
+		M7(61);
 
 		private final double rps;
 
@@ -310,15 +310,15 @@ public class Autoaim extends SubsystemBase {
 
 	public enum PassingShooterSpeed {
 
-		M0(-15),
-		M2(-33),
-		M4(-44),
-		M6(-56),
-		M8(-65),
-		M10(-73),
-		M12(-86),
-		M14(-99),
-		M16(-100);
+		M0(15),
+		M2(33),
+		M4(44),
+		M6(56),
+		M8(65),
+		M10(73),
+		M12(86),
+		M14(99),
+		M16(100);
 
 		private final double rps;
 
@@ -334,8 +334,8 @@ public class Autoaim extends SubsystemBase {
     public enum HoodHeight {
 
 		M1(0),
-		M5(-2),
-        M10(-4.1);
+		M5(5),
+        M10(10);
 
 		private final double position;
 
