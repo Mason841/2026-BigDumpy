@@ -85,8 +85,7 @@ public class SubsystemManager extends SubsystemBase {
 		shooter.setState(shooterState);
 	}
 
-	@Override
-	public void periodic() {
+	public void periodicRun() {
 
 		double intakeRackPosition;
 

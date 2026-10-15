@@ -108,8 +108,7 @@ public class Shooter extends SubsystemBase {
 		};
 	}
 
-	@Override
-	public void periodic() {
+	public void periodicRun() {
 		Logger.recordOutput("Shooter/Velocity", this.getVelocity());
 		Logger.recordOutput("Shooter/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("Shooter/State", this.getState());

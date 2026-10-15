@@ -81,8 +81,7 @@ public class IntakeRoller extends SubsystemBase {
 		};
 	}
 
-	@Override
-	public void periodic() {
+	public void periodicRun() {
 		Logger.recordOutput("IntakeRoller/Velocity", this.getVelocity());
 		Logger.recordOutput("IntakeRoller/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("IntakeRoller/State", this.getState());

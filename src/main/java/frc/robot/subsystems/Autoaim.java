@@ -159,8 +159,7 @@ public class Autoaim extends SubsystemBase {
         return false;
     }
 
-    @Override
-    public void periodic() {
+    public void periodicRun() {
         switch (target) {
             case HUB:
                 if (RobotConstants.isRedAlliance.getAsBoolean()) {

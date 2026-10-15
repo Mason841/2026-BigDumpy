@@ -82,8 +82,7 @@ public class Indexer extends SubsystemBase {
 		};
 	}
 
-	@Override
-	public void periodic() {
+	public void periodicRun() {
 		Logger.recordOutput("Indexer/Velocity", this.getVelocity());
 		Logger.recordOutput("Indexer/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("Indexer/State", this.getState());

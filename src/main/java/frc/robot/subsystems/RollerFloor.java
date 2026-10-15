@@ -82,8 +82,7 @@ public class RollerFloor extends SubsystemBase {
 		};
 	}
 
-	@Override
-	public void periodic() {
+	public void periodicRun() {
 		Logger.recordOutput("RollerFloor/Velocity", this.getVelocity());
 		Logger.recordOutput("RollerFloor/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("RollerFloor/State", this.getState());

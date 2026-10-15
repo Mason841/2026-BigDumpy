@@ -123,7 +123,17 @@ public class Robot extends LoggedRobot {
     public void robotPeriodic() {
         CommandScheduler.getInstance().run(); 
 
+        vision.periodicRun();
+        subsystemManager.periodicRun();
+        autoaim.periodicRun();
+
         drivetrain.periodicRun();
+        hood.periodicRun();
+        indexer.periodicRun();
+        intakeRack.periodicRun();
+        intakeRoller.periodicRun();
+        rollerFloor.periodicRun();
+        shooter.periodicRun();
 
         var latestShiftInfo = HubShiftUtil.getOfficialShiftInfo();
         Logger.recordOutput("HubShift/Official", latestShiftInfo);

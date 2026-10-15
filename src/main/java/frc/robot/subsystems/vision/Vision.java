@@ -34,8 +34,7 @@ public class Vision extends SubsystemBase {
         this.drivetrain = drivetrain;
     }
 
-    @Override
-    public void periodic() {
+    public void periodicRun() {
         double timestamp = Timer.getTimestamp();
         SwerveDrivetrain.SwerveDriveState lastDriveState = this.drivetrain.getState();
         inputs.robotYawDegrees = lastDriveState.Pose.getRotation().getMeasure().in(Units.Degree);
