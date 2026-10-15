@@ -123,6 +123,8 @@ public class Robot extends LoggedRobot {
     public void robotPeriodic() {
         CommandScheduler.getInstance().run(); 
 
+        drivetrain.periodicRun();
+
         var latestShiftInfo = HubShiftUtil.getOfficialShiftInfo();
         Logger.recordOutput("HubShift/Official", latestShiftInfo);
         Logger.recordOutput("BatteryVoltage", RobotController.getBatteryVoltage());

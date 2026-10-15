@@ -82,7 +82,8 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
 
     private final SwerveRequest.FieldCentric joystickDrive = new SwerveRequest.FieldCentric()
         .withDeadband(MaxSpeed * 0.03).withRotationalDeadband(MaxAngularRate * 0.03)
-        .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+        .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
+        .withSteerRequestType(SteerRequestType.Position);
 
     private final SwerveRequest.FieldCentricFacingAngle joystickDriveWithAngle = new SwerveRequest.FieldCentricFacingAngle()
         .withDeadband(MaxSpeed * 0.03).withHeadingPID(3.0, 0.0, 0.1)
@@ -191,8 +192,7 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
         return Math.abs(this.getPose().getRotation().relativeTo(targetPose.getRotation()).getDegrees()) < 2;
     }
 
-    @Override
-    public void periodic() {
+    public void periodicRun() {
 
         Logger.recordOutput("Drivetrain/RobotRelativeSpeeds", this.getState().Speeds);
         Logger.recordOutput("Drivetrain/RobotPose", this.getState().Pose);
