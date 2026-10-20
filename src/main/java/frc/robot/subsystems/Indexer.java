@@ -14,6 +14,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.MotorLogUtil;
 import frc.robot.constants.SuperstructureConstants;
 
 public class Indexer extends SubsystemBase {
@@ -86,6 +87,8 @@ public class Indexer extends SubsystemBase {
 		Logger.recordOutput("Indexer/Velocity", this.getVelocity());
 		Logger.recordOutput("Indexer/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("Indexer/State", this.getState());
+		MotorLogUtil.logMotor(leftMotorLeader, "Indexer", "LeftIndexerMotor");
+		MotorLogUtil.logMotor(rightMotor, "Indexer", "RightIndexerMotor");
 
 		switch (state) {
 			case STOP:

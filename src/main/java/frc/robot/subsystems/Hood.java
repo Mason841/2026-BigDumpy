@@ -14,6 +14,7 @@ import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.MotorLogUtil;
 import frc.robot.constants.SuperstructureConstants;
 
 public class Hood extends SubsystemBase {
@@ -86,6 +87,7 @@ public class Hood extends SubsystemBase {
 		Logger.recordOutput("Hood/Position", this.getPosition());
 		Logger.recordOutput("Hood/TargetPosition", this.getTargetPosition());
 		Logger.recordOutput("Hood/State", this.getState());
+		MotorLogUtil.logMotor(motor, "Hood", "HoodMotor");
 
 		switch (state) {
 			case STOP:

@@ -14,6 +14,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.MotorLogUtil;
 import frc.robot.constants.SuperstructureConstants;
 
 public class RollerFloor extends SubsystemBase {
@@ -86,6 +87,8 @@ public class RollerFloor extends SubsystemBase {
 		Logger.recordOutput("RollerFloor/Velocity", this.getVelocity());
 		Logger.recordOutput("RollerFloor/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("RollerFloor/State", this.getState());
+		MotorLogUtil.logMotor(leftMotorLeader, "RollerFloor", "LeftRollerFloorMotor");
+		MotorLogUtil.logMotor(rightMotor, "RollerFloor", "RightRollerFloorMotor");
 
 		switch (state) {
 			case STOP:

@@ -17,6 +17,7 @@ import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.MotorLogUtil;
 import frc.robot.constants.SuperstructureConstants;
 
 public class Shooter extends SubsystemBase {
@@ -112,6 +113,10 @@ public class Shooter extends SubsystemBase {
 		Logger.recordOutput("Shooter/Velocity", this.getVelocity());
 		Logger.recordOutput("Shooter/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("Shooter/State", this.getState());
+		MotorLogUtil.logMotor(topLeftMotorLeader, "Shooter", "TopLeftShooterMotor");
+		MotorLogUtil.logMotor(bottomLeftMotor, "Shooter", "BottomLeftShooterMotor");
+		MotorLogUtil.logMotor(topRightMotor, "Shooter", "TopRightShooterMotor");
+		MotorLogUtil.logMotor(bottomRightMotor, "Shooter", "BottomRightShooterMotor");
 
 		switch (state) {
 			case STOP:
