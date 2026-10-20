@@ -109,11 +109,11 @@ public class Indexer extends SubsystemBase {
 				break;
 
 			case REVERSE_FULLSPEED:
-				targetVelocity = -50;
+				targetVelocity = -100;
 				break;
 
 			case REVERSE_SLOW:
-				targetVelocity = -15;
+				targetVelocity = -10;
 				break;
 
 			case FOLLOW_OVERRIDE:

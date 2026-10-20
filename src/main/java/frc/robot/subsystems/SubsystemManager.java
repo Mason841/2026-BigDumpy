@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import org.littletonrobotics.junction.Logger;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -88,6 +90,8 @@ public class SubsystemManager extends SubsystemBase {
 	public void periodicRun() {
 
 		double intakeRackPosition;
+
+		Logger.recordOutput("RobotState", this.state);
 
 		switch (state) {
 			case STOPPED:
@@ -247,7 +251,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				if (autoaim.target.equals(FiringLocation.HUB) && 
 					shooter.atSpeedToHubFire() &&
-					hood.atPositionToFire() &&
+					// hood.atPositionToFire() &&
 					drivetrain.atAngleToScore()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
@@ -256,7 +260,7 @@ public class SubsystemManager extends SubsystemBase {
 					shootTimer.start();
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
-					hood.atPositionToFire() &&
+					// hood.atPositionToFire() &&
 					drivetrain.atAngleToScore() &&
 					autoaim.goodToPass()) {
 
@@ -305,7 +309,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				if (autoaim.target.equals(FiringLocation.HUB) && 
 					shooter.atSpeedToHubFire() &&
-					hood.atPositionToFire() &&
+					// hood.atPositionToFire() &&
 					drivetrain.atAngleToScore()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
@@ -314,7 +318,7 @@ public class SubsystemManager extends SubsystemBase {
 					shootTimer.start();
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
-					hood.atPositionToFire() &&
+					// hood.atPositionToFire() &&
 					drivetrain.atAngleToScore() &&
 					autoaim.goodToPass()) {
 

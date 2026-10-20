@@ -74,7 +74,7 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
 
     private final PIDController xController = new PIDController(2.0, 0.0, 0.1);
     private final PIDController yController = new PIDController(2.0, 0.0, 0.1);
-    private final PIDController headingController = new PIDController(3.0, 0.0, 0.1);
+    private final PIDController headingController = new PIDController(5.0, 0.0, 0.1);
 
     private final PIDController xControllerChoreo = new PIDController(3.0, 0.0, 0.1);
     private final PIDController yControllerChoreo = new PIDController(3.0, 0.0, 0.1);
@@ -127,7 +127,7 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
             this.joystick = joystick;
 
             headingController.enableContinuousInput(-Math.PI, Math.PI);
-            headingController.setTolerance(0.025);
+            headingController.setTolerance(0.001);
             xController.setTolerance(0.02);
             yController.setTolerance(0.02);
 
@@ -181,15 +181,15 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
             Rotation2d currentRot = this.getPose().getRotation();
             double vomega = headingController.calculate(currentRot.getRadians(), angle.getRadians());
 
-            if (Math.abs(currentRot.relativeTo(angle).getDegrees()) < 2) {
-                this.setControl(XBrake);
-            } else {
+            // if (Math.abs(currentRot.relativeTo(angle).getDegrees()) < 2) {
+            //     this.setControl(XBrake);
+            // } else {
                 this.setControl(applyFieldRelativeSpeeds.withSpeeds(new ChassisSpeeds(0, 0, vomega)));
-            }
+            // }
     }
 
     public boolean atAngleToScore() {
-        return Math.abs(this.getPose().getRotation().relativeTo(targetPose.getRotation()).getDegrees()) < 2;
+        return Math.abs(this.getPose().getRotation().relativeTo(targetPose.getRotation()).getDegrees()) < 5;
     }
 
     public void periodicRun() {

@@ -15,19 +15,19 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 public class SuperstructureConstants {
 
     public class IDs {
-        public static final int SHOOTER_TOP_RIGHT_MOTOR_ID = 0;
-        public static final int SHOOTER_BOTTOM_RIGHT_MOTOR_ID = 0;
-        public static final int SHOOTER_TOP_LEFT_MOTOR_ID = 0;
-        public static final int SHOOTER_BOTTOM_LEFT_MOTOR_ID = 0;
+        public static final int SHOOTER_TOP_RIGHT_MOTOR_ID = 13;
+        public static final int SHOOTER_BOTTOM_RIGHT_MOTOR_ID = 14;
+        public static final int SHOOTER_TOP_LEFT_MOTOR_ID = 11;
+        public static final int SHOOTER_BOTTOM_LEFT_MOTOR_ID = 12;
         public static final int HOOD_MOTOR_ID = 0;
-        public static final int INDEXER_RIGHT_MOTOR_ID = 0;
-        public static final int INDEXER_LEFT_MOTOR_ID = 0;
+        public static final int INDEXER_RIGHT_MOTOR_ID = 16;
+        public static final int INDEXER_LEFT_MOTOR_ID = 15;
         public static final int ROLLERFLOOR_RIGHT_MOTOR_ID = 0;
         public static final int ROLLERFLOOR_LEFT_MOTOR_ID = 0;
         public static final int INTAKERACK_RIGHT_MOTOR_ID = 0;
         public static final int INTAKERACK_LEFT_MOTOR_ID = 0;
-        public static final int INTAKEROLLER_RIGHT_MOTOR_ID = 0;
-        public static final int INTAKEROLLER_LEFT_MOTOR_ID = 0;
+        public static final int INTAKEROLLER_RIGHT_MOTOR_ID = 23;
+        public static final int INTAKEROLLER_LEFT_MOTOR_ID = 22;
     }
 
     public class ShooterConstants {
@@ -61,7 +61,7 @@ public class SuperstructureConstants {
             .withMotorOutput(
                 new MotorOutputConfigs()
                     .withNeutralMode(NeutralModeValue.Coast)
-                    .withInverted(InvertedValue.CounterClockwise_Positive))
+                    .withInverted(InvertedValue.Clockwise_Positive))
             .withAudio(new AudioConfigs().withAllowMusicDurDisable(true));
     }
 
@@ -140,7 +140,7 @@ public class SuperstructureConstants {
             .withMotorOutput(
                 new MotorOutputConfigs()
                     .withNeutralMode(NeutralModeValue.Coast)
-                    .withInverted(InvertedValue.CounterClockwise_Positive))
+                    .withInverted(InvertedValue.Clockwise_Positive))
             .withAudio(new AudioConfigs().withAllowMusicDurDisable(true));
     }
 
@@ -253,7 +253,7 @@ public class SuperstructureConstants {
             .withMotorOutput(
                 new MotorOutputConfigs()
                     .withNeutralMode(NeutralModeValue.Coast)
-                    .withInverted(InvertedValue.CounterClockwise_Positive))
+                    .withInverted(InvertedValue.Clockwise_Positive))
             .withAudio(new AudioConfigs().withAllowMusicDurDisable(true));
     }
 }
