@@ -251,7 +251,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				if (autoaim.target.equals(FiringLocation.HUB) && 
 					shooter.atSpeedToHubFire() &&
-					// hood.atPositionToFire() &&
+					hood.atPositionToFire() &&
 					drivetrain.atAngleToScore()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
@@ -260,7 +260,7 @@ public class SubsystemManager extends SubsystemBase {
 					shootTimer.start();
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
-					// hood.atPositionToFire() &&
+					hood.atPositionToFire() &&
 					drivetrain.atAngleToScore() &&
 					autoaim.goodToPass()) {
 
@@ -277,7 +277,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				intakeRackPosition = Math.max(
 					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX - 
-					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get() * 0.5),
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get()),
 					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.1);
 
 				intakeRack.setOverridePosition(intakeRackPosition);
@@ -309,7 +309,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				if (autoaim.target.equals(FiringLocation.HUB) && 
 					shooter.atSpeedToHubFire() &&
-					// hood.atPositionToFire() &&
+					hood.atPositionToFire() &&
 					drivetrain.atAngleToScore()) {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
@@ -318,7 +318,7 @@ public class SubsystemManager extends SubsystemBase {
 					shootTimer.start();
 				} else if (autoaim.target.equals(FiringLocation.PASS) && 
 					shooter.atSpeedToPassFire() &&
-					// hood.atPositionToFire() &&
+					hood.atPositionToFire() &&
 					drivetrain.atAngleToScore() &&
 					autoaim.goodToPass()) {
 
@@ -335,7 +335,7 @@ public class SubsystemManager extends SubsystemBase {
 
 				intakeRackPosition = Math.max(
 					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX - 
-					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get() * 0.5),
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get()),
 					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.1);
 
 				intakeRack.setOverridePosition(intakeRackPosition);

@@ -36,9 +36,9 @@ public class Hood extends SubsystemBase {
 
 	private HoodState state = HoodState.TRENCH;
 
-	private double overridePosition = 0;
+	private double overridePosition = 0.1;
 
-	private double targetPosition = 0;
+	private double targetPosition = 0.1;
 
 	private DoubleSupplier autoaimHoodPositionSupplier;
 

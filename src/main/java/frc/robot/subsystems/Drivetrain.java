@@ -188,6 +188,13 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
             // }
     }
 
+    private void runPIDToAngleWithSpeeds(double vxMPS, double vyMPS, Rotation2d angle) {
+        Rotation2d currentRot = this.getPose().getRotation();
+        double vomega = headingController.calculate(currentRot.getRadians(), angle.getRadians());
+
+        this.setControl(applyFieldRelativeSpeeds.withSpeeds(new ChassisSpeeds(vxMPS, vyMPS, vomega)));
+    }
+
     public boolean atAngleToScore() {
         return Math.abs(this.getPose().getRotation().relativeTo(targetPose.getRotation()).getDegrees()) < 5;
     }
@@ -250,10 +257,7 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
                 break;
 
             case DRIVE_PIDTOANGLE_JOYSTICKS:
-                this.setControl(
-                    joystickDriveWithAngle.withVelocityX(-joystick.getLeftY() * MaxSpeed) 
-                    .withVelocityY(-joystick.getLeftX() * MaxSpeed)
-                    .withTargetDirection(targetPose.getRotation()));
+                this.runPIDToAngleWithSpeeds(-joystick.getLeftY() * MaxSpeed, -joystick.getLeftX() * MaxSpeed, targetPose.getRotation());
                 break;
 
             case DRIVE_PIDTOPOSE:

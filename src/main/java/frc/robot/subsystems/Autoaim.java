@@ -9,6 +9,7 @@ import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.RobotConstants;
+import frc.robot.constants.SuperstructureConstants;
 
 public class Autoaim extends SubsystemBase {
 
@@ -100,7 +101,7 @@ public class Autoaim extends SubsystemBase {
                 return hoodHeightMap.get(this.getDistanceToScoreWhileMoving());
 
             case PASS:
-                return 20;
+                return SuperstructureConstants.HoodConstants.HOOD_MAX;
         
             default:
                 return 0;

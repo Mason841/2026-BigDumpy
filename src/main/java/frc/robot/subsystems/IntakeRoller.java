@@ -103,7 +103,7 @@ public class IntakeRoller extends SubsystemBase {
 				break;
 
 			case FORWARD_HALFSPEED:
-				targetVelocity = 50;
+				targetVelocity = 20;
 				break;
 
 			case REVERSE_FULLSPEED:

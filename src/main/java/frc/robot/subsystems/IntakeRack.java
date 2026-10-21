@@ -11,6 +11,8 @@ import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
+import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.MotorAlignmentValue;
@@ -28,6 +30,8 @@ public class IntakeRack extends SubsystemBase {
 
 	private MotionMagicVelocityVoltage velocityControl = new MotionMagicVelocityVoltage(0);
 	private MotionMagicExpoVoltage positionControl = new MotionMagicExpoVoltage(0);
+	// private MotionMagicVoltage positionControl = new MotionMagicVoltage(0);
+	// private PositionVoltage positionControl = new PositionVoltage(0);
 	private VoltageOut voltageControl = new VoltageOut(0);
 
 	public enum IntakeRackState {
@@ -61,13 +65,13 @@ public class IntakeRack extends SubsystemBase {
 	private double targetPosition = 0;
 	private double targetVoltage = 0;
 
-	StatusCode[] latestStatus;
+	// StatusCode[] latestStatus;
 
 	public IntakeRack() {
 		leftMotorLeader.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS);
-		rightMotor.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS);
+		rightMotor.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS_INVERTED);
 
-		rightMotor.setControl(followerOpposed);
+		this.zeroMotors();
 	}
 
 	public void setState(IntakeRackState wantedState) {
@@ -93,16 +97,24 @@ public class IntakeRack extends SubsystemBase {
 	public void stopMotors() {
 		this.targetVelocity = 0;
 		this.leftMotorLeader.stopMotor();
+		this.rightMotor.stopMotor();
+	}
+
+	public void zeroMotors() {
+		leftMotorLeader.setPosition(0);
+		rightMotor.setPosition(0);
 	}
 
 	public StatusCode[] setControl(ControlRequest control) {
 		return new StatusCode[] {
-				this.leftMotorLeader.setControl(control)
+			this.leftMotorLeader.setControl(control),
+			this.rightMotor.setControl(control)
 		};
 	}
 
 	public void periodicRun() {
-		Logger.recordOutput("IntakeRack/Position", this.getPosition());
+		Logger.recordOutput("IntakeRack/LeftMotorPosition", this.leftMotorLeader.getPosition().getValueAsDouble());
+		Logger.recordOutput("IntakeRack/RightMotorPosition", this.rightMotor.getPosition().getValueAsDouble());
 		Logger.recordOutput("IntakeRack/TargetPosition", this.getTargetPosition());
 		Logger.recordOutput("IntakeRack/State", this.getState());
 		MotorLogUtil.logMotor(leftMotorLeader, "IntakeRack", "LeftIntakeRackMotor");
@@ -180,15 +192,17 @@ public class IntakeRack extends SubsystemBase {
 				break;
 			
 			case POSITION:
-				latestStatus = this.setControl(positionControl.withPosition(targetPosition));
+				// latestStatus = this.setControl(positionControl.withPosition(targetPosition));
+				this.leftMotorLeader.setControl(positionControl.withPosition(targetPosition));
+				this.rightMotor.setControl(positionControl.withPosition(targetPosition));
 				break;
 
 			case VELOCITY:
-				latestStatus = this.setControl(velocityControl.withVelocity(targetVelocity));
+				// latestStatus = this.setControl(velocityControl.withVelocity(targetVelocity));
 				break;
 
 			case VOLTAGE:
-				latestStatus = this.setControl(voltageControl.withOutput(targetVoltage));
+				// latestStatus = this.setControl(voltageControl.withOutput(targetVoltage));
 				break;
 		
 			default:

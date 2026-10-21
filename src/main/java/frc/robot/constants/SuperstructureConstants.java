@@ -19,13 +19,13 @@ public class SuperstructureConstants {
         public static final int SHOOTER_BOTTOM_RIGHT_MOTOR_ID = 14;
         public static final int SHOOTER_TOP_LEFT_MOTOR_ID = 11;
         public static final int SHOOTER_BOTTOM_LEFT_MOTOR_ID = 12;
-        public static final int HOOD_MOTOR_ID = 0;
+        public static final int HOOD_MOTOR_ID = 17;
         public static final int INDEXER_RIGHT_MOTOR_ID = 16;
         public static final int INDEXER_LEFT_MOTOR_ID = 15;
         public static final int ROLLERFLOOR_RIGHT_MOTOR_ID = 0;
         public static final int ROLLERFLOOR_LEFT_MOTOR_ID = 0;
-        public static final int INTAKERACK_RIGHT_MOTOR_ID = 0;
-        public static final int INTAKERACK_LEFT_MOTOR_ID = 0;
+        public static final int INTAKERACK_RIGHT_MOTOR_ID = 21;
+        public static final int INTAKERACK_LEFT_MOTOR_ID = 20;
         public static final int INTAKEROLLER_RIGHT_MOTOR_ID = 23;
         public static final int INTAKEROLLER_LEFT_MOTOR_ID = 22;
     }
@@ -67,7 +67,7 @@ public class SuperstructureConstants {
 
     public class HoodConstants {
 
-        public static final double HOOD_MIN = 0;
+        public static final double HOOD_MIN = 0.1;
         public static final double HOOD_MAX = 10.85;
 
         public static final Slot0Configs HOOD_PID_CONFIGS = new Slot0Configs()
@@ -181,21 +181,21 @@ public class SuperstructureConstants {
 
     public class IntakeRackConstants {
         public static final double INTAKERACK_MIN = 0;
-        public static final double INTAKERACK_MAX = 10.68;
+        public static final double INTAKERACK_MAX = 10.3;
 
         public static final Slot0Configs INTAKERACK_PID_CONFIGS = new Slot0Configs()
-            .withKP(3)
+            .withKP(1)
             .withKI(0)
             .withKD(0)
             .withKV(0.12)
             .withKA(0)
-            .withKS(0)
+            .withKS(0.1)
             .withKG(0);
 
         public static final TalonFXConfiguration INTAKERACK_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(INTAKERACK_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(30)
+                .withStatorCurrentLimit(80)
                 .withStatorCurrentLimitEnable(true)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
@@ -205,20 +205,49 @@ public class SuperstructureConstants {
             .withMotionMagic(
                 new MotionMagicConfigs()
                     .withMotionMagicCruiseVelocity(100)
-                    .withMotionMagicAcceleration(400)
-                    .withMotionMagicJerk(4000)
+                    .withMotionMagicAcceleration(200)
+                    .withMotionMagicJerk(1000)
                     .withMotionMagicExpo_kA(0.1)
                     .withMotionMagicExpo_kV(0.12))
             .withMotorOutput(
                 new MotorOutputConfigs()
-                    .withNeutralMode(NeutralModeValue.Brake)
+                    .withNeutralMode(NeutralModeValue.Coast)
+                    .withInverted(InvertedValue.Clockwise_Positive))
+            // .withSoftwareLimitSwitch(
+            //     new SoftwareLimitSwitchConfigs()
+            //         .withForwardSoftLimitEnable(true)
+            //         .withReverseSoftLimitEnable(true)
+            //         .withForwardSoftLimitThreshold(INTAKERACK_MAX)
+            //         .withReverseSoftLimitThreshold(INTAKERACK_MIN))
+            .withAudio(new AudioConfigs().withAllowMusicDurDisable(true));
+
+            public static final TalonFXConfiguration INTAKERACK_MOTOR_CONFIGS_INVERTED = new TalonFXConfiguration()
+            .withSlot0(INTAKERACK_PID_CONFIGS)
+            .withCurrentLimits(new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(80)
+                .withStatorCurrentLimitEnable(true)
+                .withSupplyCurrentLimitEnable(true))
+            .withFeedback(
+                new FeedbackConfigs()
+                    .withFeedbackSensorSource(FeedbackSensorSourceValue.RotorSensor)
+                    .withRotorToSensorRatio(1))
+            .withMotionMagic(
+                new MotionMagicConfigs()
+                    .withMotionMagicCruiseVelocity(100)
+                    .withMotionMagicAcceleration(200)
+                    .withMotionMagicJerk(1000)
+                    .withMotionMagicExpo_kA(0.1)
+                    .withMotionMagicExpo_kV(0.12))
+            .withMotorOutput(
+                new MotorOutputConfigs()
+                    .withNeutralMode(NeutralModeValue.Coast)
                     .withInverted(InvertedValue.CounterClockwise_Positive))
-            .withSoftwareLimitSwitch(
-                new SoftwareLimitSwitchConfigs()
-                    .withForwardSoftLimitEnable(true)
-                    .withReverseSoftLimitEnable(true)
-                    .withForwardSoftLimitThreshold(INTAKERACK_MAX)
-                    .withReverseSoftLimitThreshold(INTAKERACK_MIN))
+            // .withSoftwareLimitSwitch(
+            //     new SoftwareLimitSwitchConfigs()
+            //         .withForwardSoftLimitEnable(true)
+            //         .withReverseSoftLimitEnable(true)
+            //         .withForwardSoftLimitThreshold(INTAKERACK_MAX)
+            //         .withReverseSoftLimitThreshold(INTAKERACK_MIN))
             .withAudio(new AudioConfigs().withAllowMusicDurDisable(true));
     }
     

@@ -132,7 +132,8 @@ public class Shooter extends SubsystemBase {
 				break;
 
 			case FOLLOW_AUTOAIM_SLOW:
-				targetVelocity = rpsLimiter.calculate(autoaimShootSpeedSupplier.getAsDouble());
+				// targetVelocity = rpsLimiter.calculate(autoaimShootSpeedSupplier.getAsDouble() * 0.3);
+				stopMotors();
 				break;
 
 			case FOLLOW_OVERRIDE:

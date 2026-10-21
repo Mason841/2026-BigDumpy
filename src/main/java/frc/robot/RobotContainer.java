@@ -19,6 +19,7 @@ import frc.robot.subsystems.IntakeRoller;
 import frc.robot.subsystems.RollerFloor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SubsystemManager;
+import frc.robot.subsystems.Shooter.ShooterState;
 import frc.robot.subsystems.SubsystemManager.RobotState;
 
 public class RobotContainer {
@@ -95,6 +96,10 @@ public class RobotContainer {
         ).onFalse(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
         );
+
+        joystick.b().onTrue(Commands.runOnce(() -> intakeRack.zeroMotors(), intakeRack));
+
+        joystick.povLeft().onTrue(Commands.runOnce(() -> shooter.setState(ShooterState.STOP)));
        
         // Zero drivebase relative to field
         joystick.start().onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric));
