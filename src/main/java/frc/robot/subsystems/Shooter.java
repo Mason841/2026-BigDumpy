@@ -113,6 +113,8 @@ public class Shooter extends SubsystemBase {
 		Logger.recordOutput("Shooter/Velocity", this.getVelocity());
 		Logger.recordOutput("Shooter/TargetVelocity", this.getTargetVelocity());
 		Logger.recordOutput("Shooter/State", this.getState());
+		Logger.recordOutput("Autoaim/ShooterAtFullSpeedForHubFire", this.atSpeedToHubFire());
+		Logger.recordOutput("Autoaim/ShooterAtFullSpeedForPassFire", this.atSpeedToPassFire());
 		MotorLogUtil.logMotor(topLeftMotorLeader, "Shooter", "TopLeftShooterMotor");
 		MotorLogUtil.logMotor(bottomLeftMotor, "Shooter", "BottomLeftShooterMotor");
 		MotorLogUtil.logMotor(topRightMotor, "Shooter", "TopRightShooterMotor");
@@ -132,8 +134,7 @@ public class Shooter extends SubsystemBase {
 				break;
 
 			case FOLLOW_AUTOAIM_SLOW:
-				// targetVelocity = rpsLimiter.calculate(autoaimShootSpeedSupplier.getAsDouble() * 0.3);
-				stopMotors();
+				targetVelocity = rpsLimiter.calculate(autoaimShootSpeedSupplier.getAsDouble() * 0.7);
 				break;
 
 			case FOLLOW_OVERRIDE:

@@ -8,14 +8,10 @@ import org.littletonrobotics.junction.Logger;
 
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.controls.ControlRequest;
-import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.MotionMagicExpoVoltage;
 import com.ctre.phoenix6.controls.MotionMagicVelocityVoltage;
-import com.ctre.phoenix6.controls.MotionMagicVoltage;
-import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.MotorLogUtil;
@@ -25,8 +21,6 @@ public class IntakeRack extends SubsystemBase {
   
 	private TalonFX leftMotorLeader = new TalonFX(SuperstructureConstants.IDs.INTAKERACK_LEFT_MOTOR_ID);
 	private TalonFX rightMotor = new TalonFX(SuperstructureConstants.IDs.INTAKERACK_RIGHT_MOTOR_ID);
-
-	private Follower followerOpposed = new Follower(SuperstructureConstants.IDs.INTAKERACK_LEFT_MOTOR_ID, MotorAlignmentValue.Opposed);
 
 	private MotionMagicVelocityVoltage velocityControl = new MotionMagicVelocityVoltage(0);
 	private MotionMagicExpoVoltage positionControl = new MotionMagicExpoVoltage(0);
@@ -64,8 +58,6 @@ public class IntakeRack extends SubsystemBase {
 	private double targetVelocity = 0;
 	private double targetPosition = 0;
 	private double targetVoltage = 0;
-
-	// StatusCode[] latestStatus;
 
 	public IntakeRack() {
 		leftMotorLeader.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS);
@@ -149,7 +141,7 @@ public class IntakeRack extends SubsystemBase {
 			case STOWED_FIRING:
 				controlMode = IntakeRackControlMode.POSITION;
 				targetPosition = SuperstructureConstants.IntakeRackConstants.INTAKERACK_MIN + 
-					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.1);
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.3);
 				break;
 
 			case FOLLOW_OVERRIDE:
@@ -192,17 +184,18 @@ public class IntakeRack extends SubsystemBase {
 				break;
 			
 			case POSITION:
-				// latestStatus = this.setControl(positionControl.withPosition(targetPosition));
 				this.leftMotorLeader.setControl(positionControl.withPosition(targetPosition));
 				this.rightMotor.setControl(positionControl.withPosition(targetPosition));
 				break;
 
 			case VELOCITY:
-				// latestStatus = this.setControl(velocityControl.withVelocity(targetVelocity));
+				this.leftMotorLeader.setControl(velocityControl.withVelocity(targetVelocity));
+				this.rightMotor.setControl(velocityControl.withVelocity(targetVelocity));
 				break;
 
 			case VOLTAGE:
-				// latestStatus = this.setControl(voltageControl.withOutput(targetVoltage));
+				this.leftMotorLeader.setControl(voltageControl.withOutput(targetVoltage));
+				this.rightMotor.setControl(voltageControl.withOutput(targetVoltage));				
 				break;
 		
 			default:

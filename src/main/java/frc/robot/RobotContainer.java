@@ -99,12 +99,12 @@ public class RobotContainer {
 
         joystick.b().onTrue(Commands.runOnce(() -> intakeRack.zeroMotors(), intakeRack));
 
-        joystick.povLeft().onTrue(Commands.runOnce(() -> shooter.setState(ShooterState.STOP)));
+        joystick.povLeft().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_STOWED), subsystemManager));
+
+        joystick.povDown().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager));
        
-        // Zero drivebase relative to field
         joystick.start().onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric));
 
-        // Initialize/restart inactive/active shift information
         cojoystick.start().onTrue(new InstantCommand(HubShiftUtil::initialize));
 
         drivetrain.registerTelemetry(logger::telemeterize);

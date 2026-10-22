@@ -205,6 +205,7 @@ public class SubsystemManager extends SubsystemBase {
 				break;
 
 			case DRIVING_REVERSEINTAKING:
+
 				if (RobotConstants.isAuto.getAsBoolean()) {
 					this.setSubsystemStates(
 						DriveState.AUTO, 

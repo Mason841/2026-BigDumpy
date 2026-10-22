@@ -87,6 +87,7 @@ public class Hood extends SubsystemBase {
 		Logger.recordOutput("Hood/Position", this.getPosition());
 		Logger.recordOutput("Hood/TargetPosition", this.getTargetPosition());
 		Logger.recordOutput("Hood/State", this.getState());
+		Logger.recordOutput("Autoaim/HoodAtPositionToFire", this.atPositionToFire());
 		MotorLogUtil.logMotor(motor, "Hood", "HoodMotor");
 
 		switch (state) {

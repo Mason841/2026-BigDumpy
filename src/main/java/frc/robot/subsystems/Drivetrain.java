@@ -85,11 +85,6 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
         .withDriveRequestType(DriveRequestType.OpenLoopVoltage)
         .withSteerRequestType(SteerRequestType.Position);
 
-    private final SwerveRequest.FieldCentricFacingAngle joystickDriveWithAngle = new SwerveRequest.FieldCentricFacingAngle()
-        .withDeadband(MaxSpeed * 0.03).withHeadingPID(3.0, 0.0, 0.1)
-        .withDriveRequestType(DriveRequestType.Velocity)
-        .withSteerRequestType(SteerRequestType.Position);
-
     private final SwerveRequest.ApplyRobotSpeeds applyRobotRelativeSpeeds = 
         new SwerveRequest.ApplyRobotSpeeds()
             .withDriveRequestType(SwerveModule.DriveRequestType.Velocity)
@@ -211,6 +206,8 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
         Logger.recordOutput("Drivetrain/PigeonYaw", this.getPigeon2().getYaw().getValueAsDouble());
         Logger.recordOutput("Drivetrain/PigeonRoll", this.getPigeon2().getRoll().getValueAsDouble());
         Logger.recordOutput("Drivetrain/PigeonPitch", this.getPigeon2().getPitch().getValueAsDouble());
+
+        Logger.recordOutput("Autoaim/DrivetrainAtAngleToScore", this.atAngleToScore());
 
         if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent(allianceColor -> {

@@ -22,8 +22,8 @@ public class SuperstructureConstants {
         public static final int HOOD_MOTOR_ID = 17;
         public static final int INDEXER_RIGHT_MOTOR_ID = 16;
         public static final int INDEXER_LEFT_MOTOR_ID = 15;
-        public static final int ROLLERFLOOR_RIGHT_MOTOR_ID = 0;
-        public static final int ROLLERFLOOR_LEFT_MOTOR_ID = 0;
+        public static final int ROLLERFLOOR_RIGHT_MOTOR_ID = 19;
+        public static final int ROLLERFLOOR_LEFT_MOTOR_ID = 18;
         public static final int INTAKERACK_RIGHT_MOTOR_ID = 21;
         public static final int INTAKERACK_LEFT_MOTOR_ID = 20;
         public static final int INTAKEROLLER_RIGHT_MOTOR_ID = 23;
@@ -43,9 +43,9 @@ public class SuperstructureConstants {
         public static final TalonFXConfiguration SHOOTER_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(SHOOTER_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(60)
+                .withStatorCurrentLimit(30)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(70)
+                .withSupplyCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -124,7 +124,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(60)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(70)
+                .withSupplyCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -159,7 +159,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(60)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(70)
+                .withSupplyCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -195,7 +195,7 @@ public class SuperstructureConstants {
         public static final TalonFXConfiguration INTAKERACK_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(INTAKERACK_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(80)
+                .withStatorCurrentLimit(40)
                 .withStatorCurrentLimitEnable(true)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
@@ -224,7 +224,7 @@ public class SuperstructureConstants {
             public static final TalonFXConfiguration INTAKERACK_MOTOR_CONFIGS_INVERTED = new TalonFXConfiguration()
             .withSlot0(INTAKERACK_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(80)
+                .withStatorCurrentLimit(40)
                 .withStatorCurrentLimitEnable(true)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
@@ -264,9 +264,9 @@ public class SuperstructureConstants {
         public static final TalonFXConfiguration INTAKEROLLER_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(INTAKEROLLER_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(60)
+                .withStatorCurrentLimit(50)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(70)
+                .withSupplyCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
