@@ -284,7 +284,6 @@ public class SubsystemManager extends SubsystemBase {
 				intakeRack.setOverridePosition(intakeRackPosition);
 				intakeRack.setState(IntakeRackState.FOLLOW_OVERRIDE);
 				break;
-
 				
 			case DRIVING_SCORINGMOVING:
 				if (RobotConstants.isRedAlliance.getAsBoolean()) {

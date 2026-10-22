@@ -19,7 +19,6 @@ import frc.robot.subsystems.IntakeRoller;
 import frc.robot.subsystems.RollerFloor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SubsystemManager;
-import frc.robot.subsystems.Shooter.ShooterState;
 import frc.robot.subsystems.SubsystemManager.RobotState;
 
 public class RobotContainer {

@@ -84,6 +84,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(30)
                 .withStatorCurrentLimitEnable(true)
+                .withSupplyCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -197,6 +198,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(40)
                 .withStatorCurrentLimitEnable(true)
+                .withStatorCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -226,6 +228,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(40)
                 .withStatorCurrentLimitEnable(true)
+                .withStatorCurrentLimit(40)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
