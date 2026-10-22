@@ -254,7 +254,7 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
                 break;
 
             case DRIVE_PIDTOANGLE_JOYSTICKS:
-                this.runPIDToAngleWithSpeeds(-joystick.getLeftY() * MaxSpeed, -joystick.getLeftX() * MaxSpeed, targetPose.getRotation());
+                this.runPIDToAngleWithSpeeds(joystick.getLeftY() * MaxSpeed, joystick.getLeftX() * MaxSpeed, targetPose.getRotation());
                 break;
 
             case DRIVE_PIDTOPOSE:
