@@ -63,7 +63,7 @@ public class IntakeRack extends SubsystemBase {
 		leftMotorLeader.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS);
 		rightMotor.getConfigurator().apply(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MOTOR_CONFIGS_INVERTED);
 
-		this.zeroMotors();
+		// this.zeroMotors();
 	}
 
 	public void setState(IntakeRackState wantedState) {

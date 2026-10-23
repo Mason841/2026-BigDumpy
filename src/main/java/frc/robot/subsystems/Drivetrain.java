@@ -95,6 +95,11 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
             .withDriveRequestType(DriveRequestType.Velocity)
             .withSteerRequestType(SteerRequestType.Position);
 
+    public final SwerveRequest.ApplyFieldSpeeds pathApplyFieldSpeeds =
+        new SwerveRequest.ApplyFieldSpeeds()
+            .withDriveRequestType(DriveRequestType.Velocity)
+            .withSteerRequestType(SteerRequestType.Position);
+
     private final SwerveRequest.SwerveDriveBrake XBrake = new SwerveRequest.SwerveDriveBrake();
 
     /**
@@ -333,6 +338,8 @@ public class Drivetrain extends SwerveDrivetrain<TalonFX, TalonFX, CANcoder> imp
             sample.vy + yControllerChoreo.calculate(pose.getY(), sample.y),
             sample.omega + headingControllerChoreo.calculate(pose.getRotation().getRadians(), sample.heading)
         );
+
+        targetPose = sample.getPose();
 
         // Apply the generated speeds
         this.setControl(applyFieldRelativeSpeeds.withSpeeds(speeds));

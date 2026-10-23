@@ -19,6 +19,8 @@ import choreo.auto.AutoFactory;
 import edu.wpi.first.wpilibj.Threads;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import frc.robot.constants.TunerConstants;
@@ -109,7 +111,8 @@ public class Robot extends LoggedRobot {
         autoChooser.addRoutine("LT_DoubleSweepReturn", autos::LT_DoubleSweepReturn);
         autoChooser.addRoutine("RT_DoubleSweepReturn", autos::RT_DoubleSweepReturn);
 
-        RobotModeTriggers.autonomous().whileTrue(autoChooser.selectedCommandScheduler());
+        RobotModeTriggers.autonomous().whileTrue(autoChooser.selectedCommandScheduler().withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+        RobotModeTriggers.autonomous().onTrue(Commands.waitSeconds(0.2).andThen(Commands.run(() -> vision.enableVision())));
 
         SmartDashboard.putData("AutoChooser", autoChooser);
 
@@ -160,6 +163,7 @@ public class Robot extends LoggedRobot {
     @Override
     public void autonomousInit() {
         HubShiftUtil.initialize();
+        vision.disableVision();
     }
 
     @Override

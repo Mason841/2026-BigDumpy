@@ -60,8 +60,6 @@ public class Autoaim extends SubsystemBase {
 		this.shooterSpeedsMap.put(3.0, ShooterSpeed.M3.getRPS());
 		this.shooterSpeedsMap.put(4.0, ShooterSpeed.M4.getRPS());
 		this.shooterSpeedsMap.put(5.0, ShooterSpeed.M5.getRPS());
-		this.shooterSpeedsMap.put(6.0, ShooterSpeed.M6.getRPS());
-		this.shooterSpeedsMap.put(7.0, ShooterSpeed.M7.getRPS());
 
 		this.passingShooterSpeedsMap = new InterpolatingDoubleTreeMap();
 		this.passingShooterSpeedsMap.put(0.0, PassingShooterSpeed.M0.getRPS());
@@ -291,11 +289,9 @@ public class Autoaim extends SubsystemBase {
 
 		M1(30),
 		M2(35),
-		M3(40),
-		M4(45),
-		M5(50),
-		M6(55),
-		M7(60);
+		M3(44),
+		M4(50),
+		M5(57);
 
 		private final double rps;
 

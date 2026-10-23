@@ -35,15 +35,15 @@ public class Autos {
         routine.active().onTrue(
             Commands.sequence(
                 path1.resetOdometry(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path1.cmd(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING), subsystemManager),
-                Commands.waitSeconds(2),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING)),
+                Commands.waitSeconds(3),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path2.cmd(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING), subsystemManager),
-                Commands.waitSeconds(2),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING)),
+                Commands.waitSeconds(3),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path3.cmd()
             )
         );
@@ -65,15 +65,15 @@ public class Autos {
         routine.active().onTrue(
             Commands.sequence(
                 path1.resetOdometry(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path1.cmd(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING), subsystemManager),
-                Commands.waitSeconds(2),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING)),
+                Commands.waitSeconds(3),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path2.cmd(),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING), subsystemManager),
-                Commands.waitSeconds(2),
-                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING)),
+                Commands.waitSeconds(3),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)),
                 path3.cmd()
             )
         );
@@ -82,7 +82,7 @@ public class Autos {
     }
 
     private void assignStandardCommandsToTrajectory(AutoTrajectory path) {
-        path.atTime("Intake").onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager));
-        path.atTime("IntakeStop").onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager));
+        path.atTime("Intake").onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING)));
+        path.atTime("IntakeStop").onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED)));
     }
 }
