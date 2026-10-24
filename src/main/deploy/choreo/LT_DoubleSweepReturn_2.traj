@@ -40,7 +40,7 @@
     {"x":{"exp":"6.679600238800049 m", "val":6.679600238800049}, "y":{"exp":"5.01323938369751 m", "val":5.01323938369751}, "heading":{"exp":"-1.2193520995950813 rad", "val":-1.2193520995950813}, "intervals":30, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false},
     {"x":{"exp":"5.651284217834473 m", "val":5.651284217834473}, "y":{"exp":"5.527397155761719 m", "val":5.527397155761719}, "heading":{"exp":"0 deg", "val":0.0}, "intervals":27, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false},
     {"x":{"exp":"3.1496340751647947 m", "val":3.1496340751647947}, "y":{"exp":"5.501029968261719 m", "val":5.501029968261719}, "heading":{"exp":"0 deg", "val":0.0}, "intervals":20, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false},
-    {"x":{"exp":"2.8 m", "val":2.8}, "y":{"exp":"LeftHubFire.y", "val":5.5}, "heading":{"exp":"LeftHubFire.heading", "val":-0.7853981633974483}, "intervals":40, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false}],
+    {"x":{"exp":"LeftHubFire.x", "val":2.8}, "y":{"exp":"LeftHubFire.y", "val":5.5}, "heading":{"exp":"LeftHubFire.heading", "val":-0.7853981633974483}, "intervals":40, "split":false, "fixTranslation":true, "fixHeading":true, "overrideIntervals":false}],
   "constraints":[
     {"from":"first", "to":null, "data":{"type":"StopPoint", "props":{}}, "enabled":true},
     {"from":"last", "to":null, "data":{"type":"StopPoint", "props":{}}, "enabled":true},

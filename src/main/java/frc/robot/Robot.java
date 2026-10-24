@@ -112,6 +112,8 @@ public class Robot extends LoggedRobot {
 
         autoChooser.addRoutine("LT_DoubleSweepReturn", autos::LT_DoubleSweepReturn);
         autoChooser.addRoutine("RT_DoubleSweepReturn", autos::RT_DoubleSweepReturn);
+        autoChooser.addRoutine("LT_DoubleSweepReturnCloseToHub", autos::LT_DoubleSweepReturnCloseHubSweep);
+        autoChooser.addRoutine("RT_DoubleSweepReturnCloseToHub", autos::RT_DoubleSweepReturnCloseHubSweep);
 
         SmartDashboard.putNumber("AutoStartDelay", 0);
 
