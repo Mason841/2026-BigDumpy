@@ -41,7 +41,8 @@ public class Shooter extends SubsystemBase {
 		FOLLOW_AUTOAIM_SLOW,
 		FOLLOW_OVERRIDE,
 		PRESET_TRENCH,
-		PRESET_TOWER
+		PRESET_TOWER,
+		PRESET_SYSTEMS_CHECK
 	}
 
 	private ShooterState state = ShooterState.IDLE;
@@ -147,6 +148,10 @@ public class Shooter extends SubsystemBase {
 
 			case PRESET_TOWER:
 				targetVelocity = 50;
+				break;
+
+			case PRESET_SYSTEMS_CHECK:
+				targetVelocity = 10;
 				break;
 		
 			default:

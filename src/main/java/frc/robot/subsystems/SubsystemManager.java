@@ -41,7 +41,10 @@ public class SubsystemManager extends SubsystemBase {
 		DRIVING_INTAKEDEPLOYED,
 		DRIVING_REVERSEINTAKING,
 		DRIVING_SCORING,
-		DRIVING_SCORINGMOVING
+		DRIVING_SCORINGMOVING,
+		DRIVING_SCORING_TRENCH_PRESET,
+		DRIVING_SCORING_TOWER_PRESET,
+		DRIVING_SCORING_SYSTEMS_CHECK
 	}
 
 	private RobotState state = RobotState.DRIVING_STOWED;
@@ -210,19 +213,19 @@ public class SubsystemManager extends SubsystemBase {
 					this.setSubsystemStates(
 						DriveState.AUTO, 
 						HoodState.TRENCH, 
-						IndexerState.REVERSE_SLOW, 
+						IndexerState.STOP, 
 						IntakeRackState.EXTENDED_FULL, 
 						IntakeRollerState.REVERSE_FULLSPEED, 
-						RollerFloorState.REVERSE_FULLSPEED, 
+						RollerFloorState.STOP, 
 						ShooterState.FOLLOW_AUTOAIM_SLOW);
 				} else {
 					this.setSubsystemStates(
 						DriveState.DRIVE_JOYSTICKS, 
 						HoodState.TRENCH, 
-						IndexerState.REVERSE_SLOW, 
+						IndexerState.STOP, 
 						IntakeRackState.EXTENDED_FULL, 
 						IntakeRollerState.REVERSE_FULLSPEED, 
-						RollerFloorState.REVERSE_FULLSPEED, 
+						RollerFloorState.STOP, 
 						ShooterState.FOLLOW_AUTOAIM_SLOW);
 				}
 				break;
@@ -324,6 +327,96 @@ public class SubsystemManager extends SubsystemBase {
 
 					indexer.setState(IndexerState.FORWARD_FULLSPEED);
 					rollerFloor.setState(RollerFloorState.FORWARD_FULLSPEED);
+
+					shootTimer.start();
+				} else {
+					indexer.setState(IndexerState.STOP);
+					rollerFloor.setState(RollerFloorState.STOP);
+
+					shootTimer.stop();
+				}
+
+				intakeRackPosition = Math.max(
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX - 
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get()),
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.25);
+
+				intakeRack.setOverridePosition(intakeRackPosition);
+				intakeRack.setState(IntakeRackState.FOLLOW_OVERRIDE);
+				break;
+
+			case DRIVING_SCORING_TRENCH_PRESET:
+
+				drivetrain.setDriveState(DriveState.DRIVE_JOYSTICKS);
+				hood.setState(HoodState.PRESET_TRENCH);
+				shooter.setState(ShooterState.PRESET_TRENCH);
+				intakeRoller.setState(IntakeRollerState.FORWARD_HALFSPEED);
+
+				if (shooter.atSpeedToHubFire() &&
+					hood.atPositionToFire()) {
+
+					indexer.setState(IndexerState.FORWARD_FULLSPEED);
+					rollerFloor.setState(RollerFloorState.FORWARD_FULLSPEED);
+
+					shootTimer.start();
+				} else {
+					indexer.setState(IndexerState.STOP);
+					rollerFloor.setState(RollerFloorState.STOP);
+
+					shootTimer.stop();
+				}
+
+				intakeRackPosition = Math.max(
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX - 
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get()),
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.25);
+
+				intakeRack.setOverridePosition(intakeRackPosition);
+				intakeRack.setState(IntakeRackState.FOLLOW_OVERRIDE);
+				break;
+
+			case DRIVING_SCORING_TOWER_PRESET:
+
+				drivetrain.setDriveState(DriveState.DRIVE_JOYSTICKS);
+				hood.setState(HoodState.PRESET_TOWER);
+				shooter.setState(ShooterState.PRESET_TOWER);
+				intakeRoller.setState(IntakeRollerState.FORWARD_HALFSPEED);
+
+				if (shooter.atSpeedToHubFire() &&
+					hood.atPositionToFire()) {
+
+					indexer.setState(IndexerState.FORWARD_FULLSPEED);
+					rollerFloor.setState(RollerFloorState.FORWARD_FULLSPEED);
+
+					shootTimer.start();
+				} else {
+					indexer.setState(IndexerState.STOP);
+					rollerFloor.setState(RollerFloorState.STOP);
+
+					shootTimer.stop();
+				}
+
+				intakeRackPosition = Math.max(
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX - 
+					(SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * shootTimer.get()),
+					SuperstructureConstants.IntakeRackConstants.INTAKERACK_MAX * 0.25);
+
+				intakeRack.setOverridePosition(intakeRackPosition);
+				intakeRack.setState(IntakeRackState.FOLLOW_OVERRIDE);
+				break;
+
+			case DRIVING_SCORING_SYSTEMS_CHECK:
+
+				drivetrain.setDriveState(DriveState.DRIVE_JOYSTICKS);
+				hood.setState(HoodState.PRESET_SYSTEMS_CHECK);
+				shooter.setState(ShooterState.PRESET_SYSTEMS_CHECK);
+				intakeRoller.setState(IntakeRollerState.FORWARD_HALFSPEED);
+
+				if (shooter.atSpeedToHubFire() &&
+					hood.atPositionToFire()) {
+
+					indexer.setState(IndexerState.FORWARD_INDEXSLOW);
+					rollerFloor.setState(RollerFloorState.FORWARD_INDEXSLOW);
 
 					shootTimer.start();
 				} else {

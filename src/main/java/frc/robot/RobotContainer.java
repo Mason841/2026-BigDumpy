@@ -96,7 +96,25 @@ public class RobotContainer {
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
         );
 
-        joystick.b().onTrue(Commands.runOnce(() -> intakeRack.zeroMotors(), intakeRack));
+        joystick.povUp().onTrue(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING_TOWER_PRESET), subsystemManager)
+        ).onFalse(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+        );
+
+        joystick.povRight().onTrue(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING_TRENCH_PRESET), subsystemManager)
+        ).onFalse(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+        );
+
+        joystick.a().onTrue(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING_SYSTEMS_CHECK), subsystemManager)
+        ).onFalse(
+            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+        );
+
+        joystick.x().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.IDLE), subsystemManager));
 
         joystick.povLeft().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_STOWED), subsystemManager));
 

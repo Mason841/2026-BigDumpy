@@ -31,7 +31,8 @@ public class Hood extends SubsystemBase {
 		FOLLOW_AUTOAIM,
 		FOLLOW_OVERRIDE,
 		PRESET_TRENCH,
-		PRESET_TOWER
+		PRESET_TOWER,
+		PRESET_SYSTEMS_CHECK
 	}
 
 	private HoodState state = HoodState.TRENCH;
@@ -115,11 +116,15 @@ public class Hood extends SubsystemBase {
 				break;
 				
 			case PRESET_TRENCH:
-				targetPosition = 15;
+				targetPosition = 2.5;
 				break;
 
 			case PRESET_TOWER:
-				targetPosition = 20;
+				targetPosition = 3;
+				break;
+
+			case PRESET_SYSTEMS_CHECK:
+				targetPosition = 5;
 				break;
 
 			default:
