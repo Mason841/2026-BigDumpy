@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
+
+import java.util.Set;
 import frc.robot.constants.TunerConstants;
 import frc.robot.subsystems.Autoaim;
 import frc.robot.subsystems.Drivetrain;
@@ -111,7 +113,15 @@ public class Robot extends LoggedRobot {
         autoChooser.addRoutine("LT_DoubleSweepReturn", autos::LT_DoubleSweepReturn);
         autoChooser.addRoutine("RT_DoubleSweepReturn", autos::RT_DoubleSweepReturn);
 
-        RobotModeTriggers.autonomous().whileTrue(autoChooser.selectedCommandScheduler().withInterruptBehavior(InterruptionBehavior.kCancelIncoming));
+        SmartDashboard.putNumber("AutoStartDelay", 0);
+
+        RobotModeTriggers.autonomous().whileTrue(
+            Commands.defer(
+                () -> Commands.waitSeconds(
+                        Math.max(0.0, SmartDashboard.getNumber("AutoStartDelay", 0.0)))
+                    .andThen(autoChooser.selectedCommandScheduler())
+                    .withInterruptBehavior(InterruptionBehavior.kCancelIncoming),
+                Set.of()));
         RobotModeTriggers.autonomous().onTrue(Commands.waitSeconds(0.2).andThen(Commands.run(() -> vision.enableVision())));
 
         SmartDashboard.putData("AutoChooser", autoChooser);
