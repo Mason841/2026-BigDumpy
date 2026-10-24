@@ -116,15 +116,15 @@ public class Hood extends SubsystemBase {
 				break;
 				
 			case PRESET_TRENCH:
-				targetPosition = 2.5;
+				targetPosition = 3.2;
 				break;
 
 			case PRESET_TOWER:
-				targetPosition = 3;
+				targetPosition = 3.5;
 				break;
 
 			case PRESET_SYSTEMS_CHECK:
-				targetPosition = 5;
+				targetPosition = 2;
 				break;
 
 			default:

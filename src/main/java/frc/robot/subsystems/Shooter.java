@@ -143,11 +143,11 @@ public class Shooter extends SubsystemBase {
 				break;
 
 			case PRESET_TRENCH:
-				targetVelocity = 60;
+				targetVelocity = 46;
 				break;
 
 			case PRESET_TOWER:
-				targetVelocity = 50;
+				targetVelocity = 48;
 				break;
 
 			case PRESET_SYSTEMS_CHECK:
