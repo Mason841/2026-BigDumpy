@@ -306,15 +306,15 @@ public class Autoaim extends SubsystemBase {
 
 	public enum PassingShooterSpeed {
 
-		M0(10),
-		M2(20),
-		M4(30),
-		M6(40),
-		M8(50),
-		M10(60),
-		M12(70),
-		M14(80),
-		M16(90);
+		M0(15),
+		M2(25),
+		M4(35),
+		M6(45),
+		M8(55),
+		M10(65),
+		M12(75),
+		M14(85),
+		M16(95);
 
 		private final double rps;
 

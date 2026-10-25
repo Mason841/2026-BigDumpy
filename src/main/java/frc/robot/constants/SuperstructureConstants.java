@@ -68,7 +68,7 @@ public class SuperstructureConstants {
     public class HoodConstants {
 
         public static final double HOOD_MIN = 0.1;
-        public static final double HOOD_MAX = 10.85;
+        public static final double HOOD_MAX = 8.5;
 
         public static final Slot0Configs HOOD_PID_CONFIGS = new Slot0Configs()
             .withKP(3)
@@ -82,9 +82,9 @@ public class SuperstructureConstants {
         public static final TalonFXConfiguration HOOD_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(HOOD_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(30)
+                .withStatorCurrentLimit(50)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(20)
+                .withSupplyCurrentLimit(30)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
