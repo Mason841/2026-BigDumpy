@@ -45,7 +45,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(30)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(40)
+                .withSupplyCurrentLimit(20)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -84,7 +84,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(30)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(40)
+                .withSupplyCurrentLimit(20)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -125,7 +125,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(60)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(40)
+                .withSupplyCurrentLimit(30)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -158,9 +158,9 @@ public class SuperstructureConstants {
         public static final TalonFXConfiguration ROLLERFLOOR_MOTOR_CONFIGS = new TalonFXConfiguration()
             .withSlot0(ROLLERFLOOR_PID_CONFIGS)
             .withCurrentLimits(new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(60)
+                .withStatorCurrentLimit(50)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(40)
+                .withSupplyCurrentLimit(30)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -228,7 +228,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(40)
                 .withStatorCurrentLimitEnable(true)
-                .withStatorCurrentLimit(40)
+                .withStatorCurrentLimit(30)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()
@@ -269,7 +269,7 @@ public class SuperstructureConstants {
             .withCurrentLimits(new CurrentLimitsConfigs()
                 .withStatorCurrentLimit(50)
                 .withStatorCurrentLimitEnable(true)
-                .withSupplyCurrentLimit(40)
+                .withSupplyCurrentLimit(30)
                 .withSupplyCurrentLimitEnable(true))
             .withFeedback(
                 new FeedbackConfigs()

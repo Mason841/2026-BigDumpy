@@ -54,8 +54,11 @@ public class TunerConstants {
             new CurrentLimitsConfigs()
                 // Default supply current limit is 70 A, but it can be lowered to avoid brownouts.
                 // Supply current limits can be larger than the breaker current rating.
-                .withSupplyCurrentLimit(Amps.of(70))
+                .withSupplyCurrentLimit(Amps.of(30))
                 .withSupplyCurrentLimitEnable(true)
+                .withSupplyCurrentLowerTime(0)
+                .withStatorCurrentLimit(Amps.of(50))
+                .withStatorCurrentLimitEnable(true)
         );
     private static final TalonFXConfiguration steerInitialConfigs = new TalonFXConfiguration()
         .withCurrentLimits(
