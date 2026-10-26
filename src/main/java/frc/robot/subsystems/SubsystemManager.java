@@ -77,6 +77,18 @@ public class SubsystemManager extends SubsystemBase {
 		}
 	}
 
+	public RobotState getRobotState() {
+		return state;
+	}
+
+	public boolean isFiring() {
+		return state == RobotState.DRIVING_SCORING || 
+			state == RobotState.DRIVING_SCORINGMOVING || 
+			state == RobotState.DRIVING_SCORING_TOWER_PRESET || 
+			state == RobotState.DRIVING_SCORING_TRENCH_PRESET ||
+			state == RobotState.DRIVING_SCORING_SYSTEMS_CHECK;
+	}
+
 	private void setSubsystemStates(DriveState driveState, HoodState hoodState, IndexerState indexerState,
 			IntakeRackState intakeRackState, IntakeRollerState intakeRollerState, RollerFloorState rollerFloorState,
 			ShooterState shooterState) {

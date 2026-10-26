@@ -7,7 +7,6 @@ package frc.robot;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.TunerConstants;
 import frc.robot.subsystems.Autoaim;
@@ -27,7 +26,6 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     public final CommandXboxController joystick;
-    public final CommandXboxController cojoystick = new CommandXboxController(1);
 
     public final Drivetrain drivetrain;
     public final Hood hood;
@@ -75,37 +73,55 @@ public class RobotContainer {
         joystick.rightTrigger().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING), subsystemManager)
         ).onFalse(
-            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager)
+            Commands.either(            
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager),
+                joystick.leftTrigger()
+            )
         );
 
         joystick.rightBumper().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORINGMOVING), subsystemManager)
         ).onFalse(
-            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager)
+            Commands.either(            
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager),
+                joystick.leftTrigger()
+            )        
         );
 
         joystick.leftTrigger().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager)
         ).onFalse(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+                .onlyIf(() -> !subsystemManager.isFiring())
         );
 
         joystick.leftBumper().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_REVERSEINTAKING), subsystemManager)
         ).onFalse(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+                .onlyIf(() -> !subsystemManager.isFiring())
         );
 
         joystick.povUp().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING_TOWER_PRESET), subsystemManager)
         ).onFalse(
-            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+            Commands.either(            
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager),
+                joystick.leftTrigger()
+            )        
         );
 
         joystick.povRight().onTrue(
             Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_SCORING_TRENCH_PRESET), subsystemManager)
         ).onFalse(
-            Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKEDEPLOYED), subsystemManager)
+            Commands.either(            
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_INTAKING), subsystemManager),
+                Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager),
+                joystick.leftTrigger()
+            )        
         );
 
         joystick.a().onTrue(
@@ -116,13 +132,11 @@ public class RobotContainer {
 
         joystick.x().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.IDLE), subsystemManager));
 
-        joystick.povLeft().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_STOWED), subsystemManager));
+        joystick.b().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_STOWED), subsystemManager));
 
-        joystick.povDown().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager));
+        joystick.y().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager));
        
         joystick.start().onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric));
-
-        cojoystick.start().onTrue(new InstantCommand(HubShiftUtil::initialize));
 
         drivetrain.registerTelemetry(logger::telemeterize);
     }
