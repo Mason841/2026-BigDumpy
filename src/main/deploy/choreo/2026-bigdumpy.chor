@@ -5,6 +5,20 @@
  "variables":{
   "expressions":{},
   "poses":{
+   "LeftBumpStart":{
+    "x":{
+     "exp":"3.6 m",
+     "val":3.6
+    },
+    "y":{
+     "exp":"5.55 m",
+     "val":5.55
+    },
+    "heading":{
+     "exp":"180 deg",
+     "val":3.141592653589793
+    }
+   },
    "LeftHubFire":{
     "x":{
      "exp":"2.8 m",
@@ -31,6 +45,20 @@
     "heading":{
      "exp":"180 deg",
      "val":3.141592653589793
+    }
+   },
+   "MiddleHubStart":{
+    "x":{
+     "exp":"3.55 m",
+     "val":3.55
+    },
+    "y":{
+     "exp":"4.03 m",
+     "val":4.03
+    },
+    "heading":{
+     "exp":"0 rad",
+     "val":0.0
     }
    }
   }
