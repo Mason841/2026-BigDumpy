@@ -71,6 +71,10 @@ public class SubsystemManager extends SubsystemBase {
 	public void setRobotState(RobotState wantedState) {
 		state = wantedState;
 
+		if (state == RobotState.DRIVING_IDLE) {
+			shootTimer.stop();
+		}
+
 		if (!state.equals(RobotState.DRIVING_SCORING) && !state.equals(RobotState.DRIVING_SCORINGMOVING) && !state.equals(RobotState.DRIVING_IDLE)) {
 			shootTimer.stop();
 			shootTimer.reset();
@@ -107,6 +111,20 @@ public class SubsystemManager extends SubsystemBase {
 		double intakeRackPosition;
 
 		Logger.recordOutput("RobotState", this.state);
+
+		if (RobotConstants.isRedAlliance.getAsBoolean()) {
+			if (drivetrain.getPose().getX() < 11) {
+				autoaim.setFiringLocation(FiringLocation.PASS);
+			} else {
+				autoaim.setFiringLocation(FiringLocation.HUB);
+			}
+		} else {
+			if (drivetrain.getPose().getX() > 5.57) {
+				autoaim.setFiringLocation(FiringLocation.PASS);
+			} else {
+				autoaim.setFiringLocation(FiringLocation.HUB);
+			}
+		}
 
 		switch (state) {
 			case STOPPED:
@@ -244,20 +262,6 @@ public class SubsystemManager extends SubsystemBase {
 
 			case DRIVING_SCORING:
 
-				if (RobotConstants.isRedAlliance.getAsBoolean()) {
-					if (drivetrain.getPose().getX() < 11) {
-						autoaim.setFiringLocation(FiringLocation.PASS);
-					} else {
-						autoaim.setFiringLocation(FiringLocation.HUB);
-					}
-				} else {
-					if (drivetrain.getPose().getX() > 5.57) {
-						autoaim.setFiringLocation(FiringLocation.PASS);
-					} else {
-						autoaim.setFiringLocation(FiringLocation.HUB);
-					}
-				}
-
 				drivetrain.setTargetPose(new Pose2d(drivetrain.getPose().getTranslation(), autoaim.getFieldRelativeAngleToFireWhileMoving()));
 
 				drivetrain.setDriveState(DriveState.DRIVE_PIDTOANGLE);
@@ -301,19 +305,6 @@ public class SubsystemManager extends SubsystemBase {
 				break;
 				
 			case DRIVING_SCORINGMOVING:
-				if (RobotConstants.isRedAlliance.getAsBoolean()) {
-					if (drivetrain.getPose().getX() < 11) {
-						autoaim.setFiringLocation(FiringLocation.PASS);
-					} else {
-						autoaim.setFiringLocation(FiringLocation.HUB);
-					}
-				} else {
-					if (drivetrain.getPose().getX() > 5.57) {
-						autoaim.setFiringLocation(FiringLocation.PASS);
-					} else {
-						autoaim.setFiringLocation(FiringLocation.HUB);
-					}
-				}
 
 				drivetrain.setTargetPose(new Pose2d(drivetrain.getPose().getTranslation(), autoaim.getFieldRelativeAngleToFireWhileMoving()));
 

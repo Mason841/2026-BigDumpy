@@ -136,7 +136,9 @@ public class RobotContainer {
 
         joystick.y().onTrue(Commands.runOnce(() -> subsystemManager.setRobotState(RobotState.DRIVING_IDLE), subsystemManager));
        
-        joystick.start().onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric));
+        joystick.start().onTrue(drivetrain.runOnce(drivetrain::seedFieldCentric).ignoringDisable(true));
+
+        joystick.back().onTrue(Commands.runOnce(() -> intakeRack.zeroMotors()).ignoringDisable(true));
 
         drivetrain.registerTelemetry(logger::telemeterize);
     }
